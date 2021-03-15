@@ -13,10 +13,10 @@ $(document).ready(function (){
 
 
 // variabile timer che parte da 30
-var timer = 10;
+var timer = 30;
 // counter che definisce la durata del decremento
 var count = setInterval(countDown, 1000);
-
+setTimeout(numUtente, 30100);
 
 // functions
 function countDown() {
@@ -26,8 +26,6 @@ function countDown() {
     clearInterval(count);
     $("#random").hide();
     $("#timer").hide();
-    numUtente();
-
   } else {
     // altrimenti mostro timer e lo decremento
     document.getElementById('timer').innerHTML = timer;
