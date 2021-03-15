@@ -13,7 +13,7 @@ $(document).ready(function (){
 
 
 // variabile timer che parte da 30
-var timer = 30;
+var timer = 10;
 // counter che definisce la durata del decremento
 var count = setInterval(countDown, 1000);
 
@@ -21,14 +21,25 @@ var count = setInterval(countDown, 1000);
 // functions
 function countDown() {
   // se timer = -1 allora stoppo il timer e tolgo i numeri generati
-  if (timer == -1) {
+
+  if (timer == 0) {
     clearInterval(count);
     $("#random").hide();
- } else {
-   // altrimenti mostro timer e lo decremento
+    $("#timer").hide();
+    numUtente();
+
+  } else {
+    // altrimenti mostro timer e lo decremento
     document.getElementById('timer').innerHTML = timer;
     timer--;
- }
+  }
+}
+
+
+function numUtente() {
+  for (var i = 0; i < 5; i++) {
+    var numeriUtente = parseInt(prompt("Inserisci uno alla volta i numeri che hai visto: "));
+  }
 }
 
 function pageNumRandom() {
@@ -37,7 +48,6 @@ function pageNumRandom() {
     document.getElementById('random').innerHTML += "<li>" + randomNum(1,30) + "</li>";
   }
 }
-
 
 function randomNum(min, max){
   return parseInt(Math.random() * (max - min) + min);
