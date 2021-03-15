@@ -13,10 +13,20 @@ $(document).ready(function (){
 
 
 // variabile timer che parte da 30
-var timer = 10;
+var timer = 5;
 // counter che definisce la durata del decremento
 var count = setInterval(countDown, 1000);
-setTimeout(numUtente, 10100);
+
+var numeriEsatti = [];
+var numUtente = [];
+
+setTimeout(function() {
+  for (var i = 0; i < 5; i++) {
+    var numeriUtente = parseInt(prompt("Inserisci uno alla volta i numeri che hai visto: "));
+  }
+
+
+}, 5100);
 
 
 // functions
@@ -33,27 +43,17 @@ function countDown() {
   }
 }
 
-function numeriIndovinati() {
-  var point = 0;
-  var j = 0;
-  while (j < 5) {
-    j++;
-    if(numUtente() == pageNumRandom()){
-      point++;
-    }
-  }
 
-  document.getElementById('punteggio').innerHTML = "hai indovinato " + point + " numeri";
-
-}
+// function numeriIndovinati() {
+//   for (var point = 0; point < 5; point++) {
+//     if(numUtente() == pageNumRandom()){
+//       point++;
+//     }
+//   }
+//   document.getElementById('punteggio').innerHTML = "hai indovinato " + point + " numeri";
+// }
 
 
-function numUtente() {
-  for (var i = 0; i < 5; i++) {
-    var numeriUtente = parseInt(prompt("Inserisci uno alla volta i numeri che hai visto: "));
-  }
-
-}
 
 function pageNumRandom() {
   // genero 5 numeri random da 1 a 30 nella pagina
