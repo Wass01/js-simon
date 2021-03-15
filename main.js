@@ -8,14 +8,36 @@
 
 $(document).ready(function (){
   pageNumRandom();
+  countDown();
 });
+
+
+// variabile timer che parte da 30
+var timer = 30;
+// counter che definisce la durata del decremento
+var count = setInterval(countDown, 1000);
+
+
+// functions
+function countDown() {
+  // se timer = -1 allora stoppo il timer e tolgo i numeri generati
+  if (timer == -1) {
+    clearInterval(count);
+    $("#random").hide();
+ } else {
+   // altrimenti mostro timer e lo decremento
+    document.getElementById('timer').innerHTML = timer;
+    timer--;
+ }
+}
 
 function pageNumRandom() {
   // genero 5 numeri random da 1 a 30 nella pagina
   for (var i = 0; i < 5; i++) {
-    document.getElementById('random').innerHTML += randomNum(1,30);
+    document.getElementById('random').innerHTML += "<li>" + randomNum(1,30) + "</li>";
   }
 }
+
 
 function randomNum(min, max){
   return parseInt(Math.random() * (max - min) + min);
