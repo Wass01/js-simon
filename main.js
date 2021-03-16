@@ -6,32 +6,36 @@
 //  il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
 
-$(document).ready(function (){
-  pageNumRandom();
-  countDown();
-});
-
-
 // variabile timer che parte da 30
-var timer = 5;
+var timer = 30;
 // counter che definisce la durata del decremento
 var count = setInterval(countDown, 1000);
 
-var numeriEsatti = [];
-var numUtente = [];
 
-setTimeout(function() {
+$(document).ready(function (){
+  // genero 5 numeri random da 1 a 50 nella pagina
+  var arrayRandom = [];
   for (var i = 0; i < 5; i++) {
-    var numeriUtente = parseInt(prompt("Inserisci uno alla volta i numeri che hai visto: "));
+    arrayRandom.push(randomNum(1,50));
   }
+  document.getElementById('random').innerHTML +=  arrayRandom;
 
+  countDown();
 
-}, 5100);
+  setTimeout(function() {
+    var arrayUtente = [];
+    for (var i = 0; i < 5; i++) {
+      var numeroUtente = parseInt(prompt("Inserisci uno alla volta i numeri che hai visto: "));
+      arrayUtente.push(numeroUtente);
+    }
+    compare(arrayRandom, arrayUtente);
+  }, 30100);
+});
 
 
 // functions
 function countDown() {
-  // se timer = -1 allora stoppo il timer e tolgo i numeri generati
+  // se timer = 0 allora stoppo il timer e tolgo i numeri generati
   if (timer == 0) {
     clearInterval(count);
     $("#random").hide();
@@ -43,23 +47,15 @@ function countDown() {
   }
 }
 
-
-// function numeriIndovinati() {
-//   for (var point = 0; point < 5; point++) {
-//     if(numUtente() == pageNumRandom()){
-//       point++;
-//     }
-//   }
-//   document.getElementById('punteggio').innerHTML = "hai indovinato " + point + " numeri";
-// }
-
-
-
-function pageNumRandom() {
-  // genero 5 numeri random da 1 a 30 nella pagina
-  for (var i = 0; i < 5; i++) {
-    document.getElementById('random').innerHTML += "<li>" + randomNum(1,30) + "</li>";
+function compare(array1, array2) {
+  var arrayCompare = [];
+  for (var i = 0; i < array2.length; i++) {
+    if (array1.includes(parseInt(array2[i]))) {
+      arrayCompare.push(array2[i]);
+    }
   }
+  $("#numeroUtente").text("Questi sono i tuoi numeri: " + array2);
+  $("#punteggio").text("I numeri che hai indovinato sono: " + arrayCompare);
 }
 
 function randomNum(min, max){
